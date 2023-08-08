@@ -1,6 +1,7 @@
 package com.harivansh.tracker.model;
 
 
+import com.harivansh.tracker.validation.CreateValidationGroup;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,37 +23,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Title is required")
+    @NotBlank(message = "Title is required", groups = {CreateValidationGroup.class})
     @Column(name = "title")
     private String taskTitle;
-    @NotBlank(message = "Description is required")
+    @NotBlank(message = "Description is required", groups = {CreateValidationGroup.class})
     @Column(name = "description")
     private String taskDescription;
-    @NotNull(message = "Due date is required")
+    @NotNull(message = "Due date is required", groups = {CreateValidationGroup.class})
     @Column(name = "due_date")
     private LocalDate dueDate;
 
-    public String getTaskTitle() {
-        return taskTitle;
-    }
-
-    public void setTaskTitle(String taskTitle) {
-        this.taskTitle = taskTitle;
-    }
-
-    public String getTaskDescription() {
-        return taskDescription;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
 }
